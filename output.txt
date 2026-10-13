@@ -1,0 +1,58 @@
+============================================================
+Processing DREBIN
+============================================================
+  Loaded: 15036 rows × 216 cols
+  Missing values ('?'): 5 — filling with 0 (binary features)
+  Label encoding: {'B': np.int64(0), 'S': np.int64(1)}
+  After variance filter: 215 features (dropped 0)
+
+  Class distribution [DREBIN]:
+    train: {0: 6632, 1: 3892}
+    val  : {0: 948, 1: 556}
+    test : {0: 1896, 1: 1112}
+  Saved: drebin | train=(10524, 215), val=(1504, 215), test=(3008, 215)
+  Metadata saved: 215 features
+  ✓ DREBIN done. Shape: 215 features
+
+============================================================
+Processing CIC Binders (syscalls + binder APIs)
+============================================================
+  Loaded: 11598 rows × 471 cols
+  Label encoding: {1: 0, 2: 1, 3: 2, 4: 3, 5: 4}
+  After variance filter: 316 features (dropped 154)
+
+  Class distribution [CIC Binders]:
+    train: {0: 877, 1: 1470, 2: 2733, 3: 1782, 4: 1256}
+    val  : {0: 125, 1: 210, 2: 390, 3: 255, 4: 180}
+    test : {0: 251, 1: 420, 2: 781, 3: 509, 4: 359}
+  Saved: cic_binders | train=(8118, 316), val=(1160, 316), test=(2320, 316)
+  Metadata saved: 316 features
+  ✓ CIC Binders done. Shape: 316 features
+
+============================================================
+Processing CIC Syscalls (frequency counts)
+============================================================
+  Loaded: 11598 rows × 140 cols
+  Label encoding: {1: 0, 2: 1, 3: 2, 4: 3, 5: 4}
+  After variance filter: 122 features (dropped 17)
+
+  Class distribution [CIC Syscalls]:
+    train: {0: 877, 1: 1470, 2: 2733, 3: 1782, 4: 1256}
+    val  : {0: 125, 1: 210, 2: 390, 3: 255, 4: 180}
+    test : {0: 251, 1: 420, 2: 781, 3: 509, 4: 359}
+  Saved: cic_syscalls | train=(8118, 122), val=(1160, 122), test=(2320, 122)
+  Metadata saved: 122 features
+  ✓ CIC Syscalls done. Shape: 122 features
+
+============================================================
+Processing CIC Static (chunked — memory-safe)
+============================================================
+  Pass 1/3: Computing per-column variance (chunked)...
+Traceback (most recent call last):
+  File "/Users/nitharshan/Desktop/ProjectCodeBase/ML-CICMalDroid/data_preprocess.py", line 411, in <module>
+    results["cic_static"] = process_cic_static(static_path)
+  File "/Users/nitharshan/Desktop/ProjectCodeBase/ML-CICMalDroid/data_preprocess.py", line 285, in process_cic_static
+    raise ValueError(
+ValueError: Could not find label column in static file.
+Last 10 columns: ['com.yahoo.mail.APPWIDGET_COMPOSE', 'com.yahoo.mail.data.PURGE_VACUUM', 'com.yahoo.mail.command.SEND_MESSAGE', 'com.yahoo.mail.command.MESSAGE_IN_OUTBOX_TOO_LONG', 'com.yahoo.doubleplay.notifications.ACTION_BREAKING_NEWS_NOTIFICATION_RECEIVED', 'com.yahoo.doubleplay.notifications.ACTION_TOP_NEWS_NOTIFICATION_RECEIVED', 'Lcom/medibang/android/paint/tablet/model/information/Information; => setIntenturl => iput-object => Lcom/medibang/android/paint/tablet/model/information/Information;->intenturl Ljava/lang/String;', 'Lcom/medibang/android/paint/tablet/model/information/Information; => getIntenturl => iget-object => Lcom/medibang/android/paint/tablet/model/information/Information;->intenturl Ljava/lang/String;', 'org.strongswan.android.action.START_PROFILE', 'com.karttuner.racemonitor.permission.C2D_MESSAGE']
+Set label_col manually in process_cic_static().
